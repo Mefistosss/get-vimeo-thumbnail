@@ -1,8 +1,9 @@
 {
   "name": "get-vimeo-thumbnail",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Gets vimeo data from video url",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest --config jestconfig.json"
@@ -15,9 +16,9 @@
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
-    "jest-fetch-mock": "^3.0.3",
     "ts-jest": "^27.1.4",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "whatwg-fetch": "^1.1.0"
   },
   "homepage": "https://github.com/Mefistosss/get-vimeo-thumbnail",
   "bugs": {
@@ -29,5 +30,11 @@
   },
   "files": [
     "lib/**/*"
+  ],
+  "keywords": [
+    "vimeo",
+    "thumbnail",
+    "library",
+    "browser"
   ]
 }

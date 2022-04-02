@@ -9,65 +9,35 @@ const getVimeoId = (url: String) => {
     return null;
 };
 
-// const getByFetch = (url: RequestInfo) => {
-//     return fetch(url, {
-//             // method: 'GET',
-//             headers: { 'User-Agent': 'ANYTHING_WILL_WORK_HERE' }
-//             // headers: { 'Content-Type': 'application/json;charset=utf-8' }
-//         })
-//         .then((response) => {
-//             // console.log(response);
-            
-//             if (response.status === 200) {
-//                 // console.log(response.json());
-//                 return response.json();
-//             }
-
-//             // throw { status: response.status, data: response };
-//         });
-// };
-
-const getByFetch = (url: string) => {
-    return new Promise((resolve, reject) => {
-        const xhttp = new XMLHttpRequest();
-
-        xhttp.open('GET', url, true);
-
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState === 4) {
-                if (xhttp.status === 200) {
-                    try {
-                        const result = JSON.parse(xhttp.responseText)[0];
-                        resolve(result);
-                    } catch (e) {
-                        reject(null);
-                    }
-                }
+const getByFetch = (url: RequestInfo, options?: object) => {
+    return fetch(url, options)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
             }
-        };
 
-        xhttp.send();
-    });
+            throw { status: response.status, data: response };
+        });
 };
 
-const getVomeoThumbnail = (url: String) => {
-    return new Promise((resolve, reject) => {
+const getVomeoData = (url: String, options?: object) => {
+    return new Promise((resolve: (value: any) => void, reject) => {
         const id = getVimeoId(url);
         if (id) {
-            getByFetch(`https://vimeo.com/api/v2/video/${id}.json`)
-                .then((data) => {
-                    console.log(data);
-                    
-                    resolve(data);
-                })
-                .catch(reject);
+            getByFetch(`https://vimeo.com/api/v2/video/${id}.json`, options).then(resolve).catch(reject);
         } else {
             reject(new Error('get-vimeo-thumbnail: Url is wrong.'));
         }
     });
 };
 
-export { getVimeoId, getVomeoThumbnail };
+const getVomeoThumbnail = (url: String, options?: object) => {
+    return new Promise((resolve: (value: string[]) => void, reject) => {
+        getVomeoData(url, options)
+            .then(data => resolve([data[0]?.thumbnail_small, data[0]?.thumbnail_medium, data[0]?.thumbnail_large]))
+            .catch(reject);
+    });
+};
+
+export { getVimeoId, getVomeoData, getVomeoThumbnail };
 export default getVomeoThumbnail;
-
-
