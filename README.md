@@ -1,4 +1,5 @@
 # Get vimeo video data
+[![Test](https://github.com/Mefistosss/get-vimeo-thumbnail/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Mefistosss/get-vimeo-thumbnail/actions/workflows/test.yml)
 
 This module is using `Promise` and `fetch` so add polyfills if you need
 # usage
@@ -30,7 +31,7 @@ getVomeoData(url).then((data) => {});
 
 `videoId` returns vimeo video id from url.
 
-`getVomeoData` Returns a promise which resolves to the array with json data, or rejects with err if any occurred.
+`getVomeoData` returns a promise which resolves to the array with json data, or rejects with err if any occurred.
 
 For exanple:
 ```
