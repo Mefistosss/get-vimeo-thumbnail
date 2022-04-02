@@ -1,6 +1,6 @@
 {
   "name": "get-vimeo-thumbnail",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Gets vimeo data from video url",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -33,6 +33,7 @@
   ],
   "keywords": [
     "vimeo",
+    "video",
     "thumbnail",
     "library",
     "browser"
