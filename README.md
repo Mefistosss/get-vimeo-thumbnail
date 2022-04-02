@@ -23,11 +23,15 @@ Returns a promise which resolves to the array with thumbnails, or rejects with e
 import { getVimeoId, getVomeoData } from 'get-vimeo-thumbnail';
 
 const url = 'https://vimeo.com/...'; // video url
-const videoId = getVimeoId(url)
+
+const videoId = getVimeoId(url);
 getVomeoData(url).then((data) => {});
 ```
-`videoId` returns vimeo video id from url;
+
+`videoId` returns vimeo video id from url.
+
 `getVomeoData` Returns a promise which resolves to the array with json data, or rejects with err if any occurred.
+
 For exanple:
 ```
     [
